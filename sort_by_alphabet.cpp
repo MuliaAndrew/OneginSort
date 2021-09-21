@@ -158,7 +158,6 @@ void Str_Bubble_Sort(str_t* str, text_t* text)
         for(int str_index = 0; str_index < n_pass - 1; str_index++)
         {
             Str_RSwap(str, str_index);
-
         }
     }
 }
@@ -274,4 +273,3 @@ bool Str_RComp(str_t* str, int* ptr1, int* ptr2, int str_index)
     }
     return 0;
 }
-
