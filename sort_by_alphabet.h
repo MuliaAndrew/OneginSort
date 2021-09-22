@@ -1,6 +1,8 @@
 #ifndef SORT_BY_ALPHABET_H
 #define SORT_BY_ALPHABET_H
 
+#include <stdio.h>
+
 struct str_t
 {
     int len;
@@ -25,6 +27,8 @@ char* Load_txt(text_t* txt);
 void Upload_txt(text_t* txt);
 
 void Num_Str(text_t* txt);
+
+void Get_Len(text_t* txt, FILE* onegin);
 
 //-----------------------------------------------------------------------------
 
