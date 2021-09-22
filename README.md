@@ -12,7 +12,7 @@ OneginSort is a program for sorting strings in .txt file. It can sort strings in
 
 ## Launch
 
-1.  After succesful compilling with IDE an .exe program file will appear in folder ..\PROJECTNAME\bin\(debug/realese)\PROJECTNAME.exe
+1.  After succesful compilling with IDE an .exe program file will appear in folder ..\PROJECTNAME\bin\(debug/release)\PROJECTNAME.exe
 2.  Now you can use the program!
 
         Muliarevich Andrey, 22.09.2021
