@@ -13,6 +13,9 @@ OneginSort is a program for sorting strings in .txt file. It can sort strings in
 ## Launch
 
 1.  After succesful compilling with IDE an .exe program file will appear in folder ..\PROJECTNAME\bin\(debug/release)\PROJECTNAME.exe
-2.  Now you can use the program!
+2.  For sorting strings in text you need just to run program. **Pleasant use!!**
 
-        Muliarevich Andrey, 22.09.2021
+## Hyperlink
+https://github.com/MuliaAndrew/OneginSort
+       
+       Muliarevich Andrey, 22.09.2021
