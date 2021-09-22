@@ -2,8 +2,6 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
-
 
 //-----------------------------------------------------------------------------
 
@@ -49,12 +47,9 @@ char* Load_txt(text_t* text)
     FILE *onegin = fopen("onegin2.txt", "rb");
     assert(onegin);
 
-    fseek(onegin, 0, SEEK_END);
-
-    text->len = ftell(onegin);
+    Get_Len(text, onegin);
 
     printf("Num of symbols in text: %d\n\n", text->len);
-    fseek(onegin, 0, SEEK_SET);
 
     text->value= (char*)calloc(text->len + 1, sizeof(char));
     assert(text->value);
@@ -99,6 +94,15 @@ void Num_Str(text_t* text)
     text->n_str++;
 }
 
+void Get_Len(text_t* txt, FILE* onegin)
+{
+    fseek(onegin, 0, SEEK_END);
+
+    txt->len = ftell(onegin);
+
+    fseek(onegin, 0, SEEK_SET);
+}
+
 //-----------------------------------------------------------------------------
 
 int Str_Length(text_t* text, int* text_pos)
@@ -127,7 +131,7 @@ char* Str_Ctor(text_t* text, int* txt_pos, int str_index, str_t* str)
         (*txt_pos)++;
         (str[str_index].len)--;
     }
-    
+
     if(str[str_index].len <=0)
         str[str_index].len = 1;
 
