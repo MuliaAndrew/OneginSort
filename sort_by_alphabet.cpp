@@ -127,6 +127,9 @@ char* Str_Ctor(text_t* text, int* txt_pos, int str_index, str_t* str)
         (*txt_pos)++;
         (str[str_index].len)--;
     }
+    
+    if(str[str_index].len <=0)
+        str[str_index].len = 1;
 
     str[str_index].value = (char*)calloc(str[str_index].len, sizeof(char));
     assert(str[str_index].value);
