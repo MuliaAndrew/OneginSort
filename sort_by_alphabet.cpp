@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 //-----------------------------------------------------------------------------
 
 void Sort_Txt(text_t* text)
@@ -11,9 +12,9 @@ void Sort_Txt(text_t* text)
     Num_Str(text);
 
     str_t* str = (str_t*)calloc(text->n_str, sizeof(str_t));
+    assert(str);
 
-    printf("Success\n\n\n\n--------------------------------------------\n"
-           "%d\n%d\n", text->len, text->n_str);
+    printf("Successful str calloc\n\n");
 
     for(int str_index = 0, text_pos = 0; str_index < text->n_str && text_pos < text->len; str_index++)
         str[str_index].len = Str_Length(text, &text_pos);
@@ -21,19 +22,24 @@ void Sort_Txt(text_t* text)
     for(int str_index = 0, text_pos = 0; str_index < text->n_str && text_pos < text->len; str_index++)
         str[str_index].value = Str_Ctor(text, &text_pos, str_index, str);
 
-    printf("Success\n\n");
+    printf("Successful str->value Ctor\n\n");
 
     Str_Bubble_Sort(str, text);
+    printf("Successful Str_Bubble_Sort\n\n");
 
     text->value = (char*)realloc(text->value, 2 * text->len + 3);
+    assert(text->value);
+
+    printf("Successful text realloc\n\n");
 
     Str_Rebuild(text, str);
+    printf("Successful str rebuild\n\n");
 
     Str_Dtor(str);
+    printf("Successful str->value Dtor\n\n");
+
     free(str);
     str = nullptr;
-
-    printf("Success\n\n");
 }
 
 //-----------------------------------------------------------------------------
@@ -47,7 +53,7 @@ char* Load_txt(text_t* text)
 
     text->len = ftell(onegin);
 
-    printf("%d\n\n", text->len);
+    printf("Num of symbols in text: %d\n\n", text->len);
     fseek(onegin, 0, SEEK_SET);
 
     text->value= (char*)calloc(text->len + 1, sizeof(char));
@@ -57,7 +63,7 @@ char* Load_txt(text_t* text)
 
     fclose(onegin);
 
-    printf("\n\n\n\n\%s", text->value);
+    printf("\n\%s\n\n", text->value);
 
     return text->value;
 }
@@ -70,12 +76,15 @@ void Upload_txt(text_t* text)
     FILE *onegin = fopen("onegin.txt", "wb");
     assert(onegin);
 
-    fwrite(text->value, sizeof(char), 2 * text->len + 1, onegin);
+    int check = fwrite(text->value, sizeof(char), 2 * text->len + 1, onegin);
+    assert(check);
 
     fclose(onegin);
 
     free(text->value);
     text->value = nullptr;
+
+    printf("\n\nProgram completed successfully\n\n");
 }
 
 void Num_Str(text_t* text)
@@ -113,16 +122,17 @@ int Str_Length(text_t* text, int* text_pos)
 
 char* Str_Ctor(text_t* text, int* txt_pos, int str_index, str_t* str)
 {
-    (str[str_index]).value = (char*)calloc((str[str_index]).len, sizeof(char));
+    while(text->value[*txt_pos] > 'z' || text->value[*txt_pos] < 'A')
+    {
+        (*txt_pos)++;
+        (str[str_index].len)--;
+    }
 
-    printf("%d\n", (str[str_index]).len);
+    str[str_index].value = (char*)calloc(str[str_index].len, sizeof(char));
+    assert(str[str_index].value);
 
-    for(int str_pos = 0; str_pos < (str[str_index]).len && *txt_pos < text->len; str_pos ++, (*txt_pos)++)
+    for(int str_pos = 0; str_pos < str[str_index].len && *txt_pos < text->len; str_pos ++, (*txt_pos)++)
         str[str_index].value[str_pos] = text->value[(*txt_pos)];
-
-    printf("%d\n\n", (*txt_pos));
-
-    //assert(text->value[*txt_pos - 1] == '\n');
 
     return str[str_index].value;
 }
@@ -158,6 +168,7 @@ void Str_Bubble_Sort(str_t* str, text_t* text)
         for(int str_index = 0; str_index < n_pass - 1; str_index++)
         {
             Str_RSwap(str, str_index);
+
         }
     }
 }
@@ -179,8 +190,8 @@ void Str_RSwap(str_t* str, int str_index)
     int ptr1 = str[str_index].len - 1;
     int ptr2 = str[str_index + 1].len - 1;
 
-    Letter_LSearch(str, &ptr1, str_index);
-    Letter_LSearch(str, &ptr2, str_index + 1);
+    Letter_RSearch(str, &ptr1, str_index);
+    Letter_RSearch(str, &ptr2, str_index + 1);
 
     if(Str_RComp(str, &ptr1, &ptr2, str_index))
         Str_Swapper(str, str_index);
@@ -203,19 +214,17 @@ void Letter_LSearch(str_t* str, int* ptr, int str_index)
 {
     while(*ptr < str[str_index].len - 1)
     {
+        if(str[str_index].value[*ptr] <= 'z' && str[str_index].value[*ptr] >= 'A')
+            break;
+
+        if(str[str_index].value[*ptr] > 'z' || str[str_index].value[*ptr] < 'A')
+            (*ptr)++;
+
         if(*ptr == str[str_index].len - 1)
         {
             *ptr = -1;
             break;
         }
-
-        if(str[str_index].value[*ptr] <= 'z' && str[str_index].value[*ptr] >= 'A')
-            break;
-
-        if(str[str_index].value[*ptr] > 'z' && str[str_index].value[*ptr] < 'A')
-            (*ptr)++;
-
-        printf("\nAAAA\n");
     }
 }
 
@@ -226,7 +235,7 @@ void Letter_RSearch(str_t* str, int* ptr, int str_index)
         if(str[str_index].value[*ptr] <= 'z' && str[str_index].value[*ptr] >= 'A')
             break;
 
-        if(str[str_index].value[*ptr] >= 'z' && str[str_index].value[*ptr] <= 'A')
+        if(str[str_index].value[*ptr] > 'z' || str[str_index].value[*ptr] < 'A')
             (*ptr)--;
     }
 }
@@ -250,6 +259,7 @@ bool Str_LComp(str_t* str, int* ptr1, int* ptr2, int str_index)
         (*ptr1)++;
         (*ptr2)++;
     }
+    return 0;
 }
 
 bool Str_RComp(str_t* str, int* ptr1, int* ptr2, int str_index)
@@ -260,13 +270,13 @@ bool Str_RComp(str_t* str, int* ptr1, int* ptr2, int str_index)
     if(*ptr2 == -1)
         return 0;
 
-    while(*ptr1 > 0 && *ptr2 > 2)
+    while(*ptr1 > 0 && *ptr2 > 0)
     {
         if(str[str_index].value[*ptr1] > str[str_index + 1].value[*ptr2])
-            return 0;
+            return 1;
 
         if(str[str_index].value[*ptr1] < str[str_index + 1].value[*ptr2])
-            return 1;
+            return 0;
 
         (*ptr1)--;
         (*ptr2)--;
