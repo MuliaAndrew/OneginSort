@@ -1,0 +1,28 @@
+digraph "Sort_Txt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Sort_Txt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Sorting of text."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Num_Str",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a27eb68f0cbd1dc390689a9179215f552",tooltip="Counts number of strings in buffer and assigns this number to txt.len."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Str_Bubble_Sort",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a420fa3764280aaa403350273c1ebc4fe",tooltip="Consists of sorting algorithm (uses bubble sorting algorithm)"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Str_L_Sort",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a91176073a00f82d4de61551f3880e6fc",tooltip="Consists of comparing algorithm."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Letter_L_Search",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a80532fc5d9021b5c367a07c4f8d2467f",tooltip="Searching for the first letter in string from its beginning"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Str_L_Comp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#ac4b79f7a8354564cdc8aa0a80993fba2",tooltip="Comparator of two consecutive strings from their array."];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Str_Swap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a8488adecb0a7699b91339becba4c4f7a",tooltip="Swaps two consecutive strings in their array."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Str_Ctor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a05eea820f5c67a4c04c01d16fe448f4c",tooltip="Constructor of array of str_t strings."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Str_Dtor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a8dfc007ad703492df716a7071eb460df",tooltip="Desctructor of array of str_t strings."];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Str_Length",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a46de579a31b114e07d8ef1236d16bd90",tooltip="Counts length of every string in txt file."];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="Str_Rebuild",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a4ebff2ee9de5cf5b3d19ec01d6c7ed48",tooltip="Writes sorted strings back to buffer."];
+}

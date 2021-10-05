@@ -1,0 +1,14 @@
+digraph "Str_R_Sort"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Str_R_Sort",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Consists of comparing algorithm."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Letter_R_Search",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#aef24a33e2262577ac2fe989f373e6f41",tooltip="Searching for the first letter in string from its end"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Str_R_Comp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#aecfb7be2047de77f53096ef965e0228e",tooltip="Comparator of two consecutive strings from their array."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Str_Swap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sort__by__alphabet_8cpp.html#a8488adecb0a7699b91339becba4c4f7a",tooltip="Swaps two consecutive strings in their array."];
+}
